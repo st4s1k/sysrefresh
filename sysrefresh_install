@@ -1,10 +1,10 @@
 #!/bin/bash
 
-[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
+[ "$(whoami)" != "root" ] && exec sudo -- "$0"
 
 echo "#!/bin/bash
 
-[ \"\$(whoami)\" != \"root\" ] && exec sudo -- \"\$0\" \"\$@\"
+[ \"\$(whoami)\" != \"root\" ] && exec sudo -- \"\$0\"
 
 echo "----------------------------------------------------------------------"
 echo "Resynchronizing the package index files from their sources..."
