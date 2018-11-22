@@ -12,3 +12,8 @@ cd sysrefresh/
 chmod +x sysrefresh_install
 bash ./sysrefresh_install
 ```
+# Usage
+Just run the command and enter the root password:
+```
+sysrefresh
+```
