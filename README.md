@@ -3,5 +3,5 @@ Handy installation script, that generates another script, that represents a comm
 
 To install the script, execute this long command (it will prompt for root password):
 ```
-git clone git@github.com:st4s1k/sysrefresh.git && cd sysrefresh/ && chmod +x sysrefresh_install && ./sysrefresh_install
+git clone git@github.com:st4s1k/sysrefresh.git && cd sysrefresh/ && chmod +x sysrefresh_install && bash ./sysrefresh_install
 ```
