@@ -1,0 +1,34 @@
+#!/bin/bash
+
+[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
+
+echo "#!/bin/bash
+
+[ \"\$(whoami)\" != \"root\" ] && exec sudo -- \"\$0\" \"\$@\"
+
+echo "----------------------------------------------------------------------"
+echo "Resynchronizing the package index files from their sources..."
+echo "----------------------------------------------------------------------"
+apt-get update
+
+echo "----------------------------------------------------------------------"
+echo "Installing the newest versions of all packages..."
+echo "----------------------------------------------------------------------"
+apt-get dist-upgrade
+
+echo "----------------------------------------------------------------------"
+echo "Fixing broken dependencies..."
+echo "----------------------------------------------------------------------"
+apt-get install -f
+
+echo "----------------------------------------------------------------------"
+echo "Clearing out the local repository of retrieved package files..."
+echo "----------------------------------------------------------------------"
+apt-get autoclean
+
+echo "----------------------------------------------------------------------"
+echo "Removing packages that are no longer needed..."
+echo "----------------------------------------------------------------------"
+apt-get autoremove" >> /usr/local/bin/sysrefresh
+
+chmod +x /usr/local/bin/sysrefresh
