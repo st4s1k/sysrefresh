@@ -5,3 +5,10 @@ To install the script, execute this long command (it will prompt for root passwo
 ```
 git clone git@github.com:st4s1k/sysrefresh.git && cd sysrefresh/ && chmod +x sysrefresh_install && bash ./sysrefresh_install
 ```
+or every command in order
+```
+git clone git@github.com:st4s1k/sysrefresh.git
+cd sysrefresh/
+chmod +x sysrefresh_install
+bash ./sysrefresh_install
+```
