@@ -26,3 +26,9 @@ Just run the command and enter the root password:
 ```
 sysrefresh
 ```
+# Portable
+"sysrefresh" file is a portable version, just modify the permissions and run it:
+```
+chmod +x sysrefresh
+./sysrefresh
+```
