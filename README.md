@@ -7,11 +7,11 @@ One terminal command for:
 5. Removing packages that are no longer needed.
 ### Equivalent to:
 ```
-sudo apt-get update && *// Resynchronizing the package index files from their sources...*
-sudo apt-get dist-upgrade && *// Installing the newest versions of all packages...* 
-sudo apt-get install -f && *// Fixing broken dependencies...*
-sudo apt-get autoclean && *// Clearing out the local repository of retrieved package files...*
-sudo apt-get autoremove *// Removing packages that are no longer needed...*
+sudo apt-get update &&       // Resynchronizing the package index files from their sources...
+sudo apt-get dist-upgrade && // Installing the newest versions of all packages... 
+sudo apt-get install -f &&   // Fixing broken dependencies...
+sudo apt-get autoclean &&    // Clearing out the local repository of retrieved package files...
+sudo apt-get autoremove      // Removing packages that are no longer needed...
 ```
 # Installation
 To install the script, execute this one-line command (it will prompt for root password):
