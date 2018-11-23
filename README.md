@@ -14,7 +14,7 @@ sudo apt-get autoclean &&    // Clearing out the local repository of retrieved p
 sudo apt-get autoremove      // Removing packages that are no longer needed...
 ```
 # Installation
-To install the script, execute this one-line command (it will prompt for root password):
+To install the script, just copy-paste and execute this command (it will prompt for root password):
 ```
 git clone git@github.com:st4s1k/sysrefresh.git &&
 cd sysrefresh/ &&
