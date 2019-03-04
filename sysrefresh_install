@@ -2,6 +2,9 @@
 
 [ "$(whoami)" != "root" ] && exec sudo -- "$0"
 
-cp ./sysrefresh /usr/local/bin/sysrefresh
+app_name=sysrefresh
+install_path=/usr/local/bin/
 
-chmod +x /usr/local/bin/sysrefresh
+cp ./$app_name $install_path
+
+chmod +x $install_path/$app_name
