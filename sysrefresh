@@ -1,28 +1,71 @@
 #!/bin/bash
 
-[ "$(whoami)" != "root" ] && exec sudo -- "$0"
+[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 
-echo ----------------------------------------------------------------------
-echo Resynchronizing the package index files from their sources...
-echo ----------------------------------------------------------------------
-apt-get update
+if [[ "$#" -gt "1" ]]; then
+    echo "Error: Invalid number of arguments!"
+    exit
+elif [[ "$#" == "1" ]] && [[ "$1" != "-y" ]]; then
+    echo "Error: Invalid argument: $1"
+    exit
+fi
 
-echo ----------------------------------------------------------------------
-echo Installing the newest versions of all packages...
-echo ----------------------------------------------------------------------
-apt-get dist-upgrade
+read -r -d '' MODE_Y_MSG << EOM
+----------------------------------------------------------------------
+[MODE: YES TO ALL]
+EOM
+read -r -d '' MODE_D_MSG << EOM
+----------------------------------------------------------------------
+[MODE: DEFAULT]
+EOM
+read -r -d '' RESYNC_MSG << EOM
+----------------------------------------------------------------------
+Resynchronizing the package index files from their sources...
+----------------------------------------------------------------------
+EOM
+read -r -d '' INSTALL_MSG << EOM
+----------------------------------------------------------------------
+Installing the newest versions of all packages...
+----------------------------------------------------------------------
+EOM
+read -r -d '' FIX_MSG << EOM
+----------------------------------------------------------------------
+Fixing broken dependencies...
+----------------------------------------------------------------------
+EOM
+read -r -d '' AUTO_CLN_MSG << EOM
+----------------------------------------------------------------------
+Clearing out the local repository of retrieved package files...
+----------------------------------------------------------------------
+EOM
+read -r -d '' AUTO_RM_MSG << EOM
+----------------------------------------------------------------------
+Removing packages that are no longer needed...
+----------------------------------------------------------------------
+EOM
 
-echo ----------------------------------------------------------------------
-echo Fixing broken dependencies...
-echo ----------------------------------------------------------------------
-apt-get install -f
-
-echo ----------------------------------------------------------------------
-echo Clearing out the local repository of retrieved package files...
-echo ----------------------------------------------------------------------
-apt-get autoclean
-
-echo ----------------------------------------------------------------------
-echo Removing packages that are no longer needed...
-echo ----------------------------------------------------------------------
-apt-get autoremove
+if [[ "$1" == "-y" ]]; then
+    echo "$MODE_Y_MSG"
+    echo "$RESYNC_MSG"
+    apt-get update -y
+    echo "$INSTALL_MSG"
+    apt-get dist-upgrade -y
+    echo "$FIX_MSG"
+    apt-get install -f -y
+    echo "$AUTO_CLN_MSG"
+    apt-get autoclean -y
+    echo "$AUTO_RM_MSG"
+    apt-get autoremove -y
+else
+    echo "$MODE_D_MSG"
+    echo "$RESYNC_MSG"
+    apt-get update
+    echo "$INSTALL_MSG"
+    apt-get dist-upgrade
+    echo "$FIX_MSG"
+    apt-get install -f
+    echo "$AUTO_CLN_MSG"
+    apt-get autoclean
+    echo "$AUTO_RM_MSG"
+    apt-get autoremove
+fi
